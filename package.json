@@ -1,6 +1,6 @@
-{ "name": "copy-paste"
+{ "name": "copypaste"
 , "version": "0.3.0"
-, "description": "A command line utility that allows read/write (i.e copy/paste) access to the system clipboard."
+, "description": "fork of copy-paste but without the global functions."
 , "keywords": [ "copy", "paste", "copy and paste", "clipboard" ]
 , "maintainers":
   [ { "name": "Xavi"
@@ -11,7 +11,7 @@
 , "main": "./index.js"
 , "repository":
   { "type": "git"
-  , "url": "https://github.com/xavi-/node-copy-paste"
+  , "url": "https://github.com/loveencounterflow/copypaste"
   }
 , "optionalDependencies":
   { "execSync": "~1.0.0" }
