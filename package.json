@@ -1,18 +1,26 @@
-{ "name": "copypaste"
-, "version": "0.3.0"
-, "description": "fork of copy-paste but without the global functions."
-, "keywords": [ "copy", "paste", "copy and paste", "clipboard" ]
-, "maintainers":
-  [ { "name": "Xavi"
-    , "email": "xavi.rmz@gmail.com"
-    , "web": "http://xavi.co"
+{
+  "name": "copypaste",
+  "version": "0.3.1",
+  "description": "fork of copy-paste but without the global functions.",
+  "keywords": [
+    "copy",
+    "paste",
+    "copy and paste",
+    "clipboard"
+  ],
+  "maintainers": [
+    {
+      "name": "Xavi",
+      "email": "xavi.rmz@gmail.com",
+      "web": "http://xavi.co"
     }
-  ]
-, "main": "./index.js"
-, "repository":
-  { "type": "git"
-  , "url": "https://github.com/loveencounterflow/copypaste"
+  ],
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loveencounterflow/copypaste"
+  },
+  "optionalDependencies": {
+    "execSync": "~1.0.0"
   }
-, "optionalDependencies":
-  { "execSync": "~1.0.0" }
 }
