@@ -1,13 +1,13 @@
 var spawn = require("child_process").spawn;
 var util = require("util");
 
-try {
-	var execSync = (function() {
-		var execSync = require("execSync");
-		return function(cmd) { return execSync.exec(cmd).stdout; };
-	})();
-}
-catch(e) { execSync = null; }
+// try {
+// 	var execSync = (function() {
+// 		var execSync = require("execSync");
+// 		return function(cmd) { return execSync.exec(cmd).stdout; };
+// 	})();
+// }
+// catch(e) { execSync = null; }
 
 var config, isSilent;
 
@@ -29,9 +29,9 @@ switch(process.platform) {
 }
 
 var noop = function() {};
-var _copy = GLOBAL.copy, _paste = GLOBAL.paste;
+// var _copy = GLOBAL.copy, _paste = GLOBAL.paste;
 
-var copy = GLOBAL.copy = exports.copy = function(text, callback) {
+var copy = exports.copy = function(text, callback) {
 	var child = spawn(config.copy.command, config.copy.args);
 
 	var done = callback && function() { callback.apply(this, arguments); done = noop; };
@@ -79,9 +79,10 @@ var copy = GLOBAL.copy = exports.copy = function(text, callback) {
 };
 
 var pasteCommand = [ config.paste.command ].concat(config.paste.args).join(" ");
-var paste = GLOBAL.paste = exports.paste = function(callback) {
-	if(execSync && !callback) { return execSync(pasteCommand); }
-	else if(callback) {
+var paste = exports.paste = function(callback) {
+	if( callback == null ) { throw new Error( "synchronous mode not support; need callback function"); };
+	// if(execSync && !callback) { return execSync(pasteCommand); }
+	// else if(callback) {
 		var child = spawn(config.paste.command, config.paste.args);
 
 		var done = callback && function() { callback.apply(this, arguments); done = noop; };
@@ -104,24 +105,24 @@ var paste = GLOBAL.paste = exports.paste = function(callback) {
 				done(new Error(err.join("")));
 			})
 		;
-	} else if(!isSilent) {
-		console.error(
-			"Unfortunately a synchronous version of paste is not supported on this platform."
-		);
-	}
+	// } else if(!isSilent) {
+	// 	console.error(
+	// 		"Unfortunately a synchronous version of paste is not supported on this platform."
+	// 	);
+	// }
 };
 
-exports.noConflict = function() {
-	GLOBAL.copy = _copy;
-	GLOBAL.paste = _paste;
+// exports.noConflict = function() {
+// 	GLOBAL.copy = _copy;
+// 	GLOBAL.paste = _paste;
 
-	if(_copy === undefined) { delete GLOBAL.copy; }
-	if(_paste === undefined) { delete GLOBAL.paste; }
+// 	if(_copy === undefined) { delete GLOBAL.copy; }
+// 	if(_paste === undefined) { delete GLOBAL.paste; }
 
-	return exports;
-};
+// 	return exports;
+// };
 
-exports.silent = function() {
-	isSilent = true;
-	return exports;
-};
+// exports.silent = function() {
+// 	isSilent = true;
+// 	return exports;
+// };
